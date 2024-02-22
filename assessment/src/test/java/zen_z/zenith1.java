@@ -5,9 +5,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+import dev.failsafe.internal.util.Durations;
+import scala.concurrent.duration.Duration;
 
 public class zenith1 {
 
@@ -41,11 +46,20 @@ public class zenith1 {
         WebElement submenu1 = driver.findElement(By.linkText("Current Account"));
         action.moveToElement(submenu1).click().build().perform();
 
-        // Validate the features of the "Individual Current Account"
+        // Validate the  "Individual Current Account"
         if (driver.getPageSource().contains("Individual Current Account")) {
             System.out.println("Individual Current Account is present");
         } else {
             System.out.println("Individual Current Account is not present");
+        }
+    
+
+        // Validates the Feature and Benefits of the “Individual Current Account”
+        driver.findElement(By.id("#features-and-benefits")).click();
+        if (driver.getCurrentUrl().contains("https://www.zenithbank.com/personal-banking/bank-accounts/current-account/#features-and-benefits")) {
+            System.out.println(driver.getCurrentUrl() + " is present");
+        } else {
+            System.out.println(driver.getCurrentUrl() + " is not present");
         }
 
         // Validates the requirements of the “Individual Current Account”
